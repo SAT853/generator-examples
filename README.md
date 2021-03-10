@@ -1,70 +1,20 @@
-# Getting Started with Create React App
+# A Simple Guide to Understanding Javascript (ES6) Generators
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+- Iterators are an implementation of Iterable objects such as maps, arrays and strings which enables us to iterate over them using next(). They have a wide variety of use cases across Generators, Observables and Spread operators.
 
-## Available Scripts
+- Functions in JavaScript, as we all know, “run until return/end”. Generator Functions on the other hand, “run until yield/return/end”. Unlike the normal functions Generator Functions once called, returns the Generator Object, which holds the entire Generator Iterable that can be iterated using next() method or for…of loop.
 
-In the project directory, you can run:
+- Every next() call on the generator executes every line of code until the next yield it encounters and suspends its execution temporarily.
 
-### `npm start`
+- Syntactically they are identified with a _, either function_ X or function \*X, — both mean the same thing.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Once created, calling the generator function returns the Generator Object. This generator object needs to be assigned to a variable to keep track of the subsequent next() methods called on itself. If the generator is not assigned to a variable then it will always yield only till first yield expression on every next().
+  The generator functions are normally built using yield expressions. Each yield inside the generator function is a stopping point before the next execution cycle starts. Each execution cycle is triggered by means of next() method on the generator.
+  On each next() call, the yield expression returns its value in the form of an object containing the following parameters.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```
+{ value: 10, done: false } // assuming that 10 is the value of yield
+```
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Value — is everything that is written on the right side of the yield keyword, it can be a function call, object or practically anything. For empty yields this value is undefined.
+- Done — indicates the status of the generator, whether it can be executed further or not. When done returns true, it means that the function has finished its run.
