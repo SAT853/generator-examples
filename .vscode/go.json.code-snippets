@@ -1,0 +1,157 @@
+{
+  "generator function syntaxt": {
+    "prefix": "test1",
+    "body": [
+      "  function* idMaker() {",
+      "    yield 5;",
+      "    yield 10;",
+      "    yield 15;",
+      "  }",
+      "",
+      "  const genId = idMaker();",
+      "  console.log(genId.next());",
+      "  console.log(genId.next());",
+      "  console.log(genId.next());"
+    ],
+    "description": "generator function syntaxt"
+  },
+  "generator function syntaxt - yield*": {
+    "prefix": "test2",
+    "body": [
+      "  function* generator(i) {",
+      "    yield i;",
+      "    yield i + 5;",
+      "    yield* anotherGenerator(i);",
+      "    yield i + 20;",
+      "  }",
+      "",
+      "  function* anotherGenerator(i) {",
+      "    yield i + 10;",
+      "  }",
+      "",
+      "  const gen = generator(1);",
+      "",
+      "  console.log(gen.next());",
+      "  console.log(gen.next());",
+      "  console.log(gen.next());",
+      "  console.log(gen.next());",
+      "  console.log(gen.next());"
+    ],
+    "description": "generator function syntaxt - yield*"
+  },
+  "Passing arguments into Generator": {
+    "prefix": "test3",
+    "body": [
+      "  function* logGenerator() {",
+      "    console.log(0);",
+      "    console.log(1, yield);",
+      "    console.log(2, yield);",
+      "    console.log(3, yield);",
+      "  }",
+      "",
+      "  const gen = logGenerator();",
+      "",
+      "  console.log(gen.next());",
+      "  gen.next(5);",
+      "  gen.next(10);",
+      "  gen.next(15);"
+    ],
+    "description": "Passing arguments into Generator"
+  },
+  "Passing arguments into Generator1": {
+    "prefix": "test4",
+    "body": [
+      "    function* generatorFunction(i) {",
+      "    console.log(i);",
+      "    const j = 5 * (yield i * 10);",
+      "    console.log(j);",
+      "    const k = yield (2 * j) / 4;",
+      "    console.log(k);",
+      "    return i + j + k;",
+      "  }",
+      "",
+      "  const gen = generatorFunction(10);",
+      "",
+      "  console.log(gen.next(20));",
+      "  console.log(gen.next(10));",
+      "  console.log(gen.next(5));"
+    ],
+    "description": "Passing arguments into Generator"
+  },
+  "Passing Yield as an Argument of a Function ": {
+    "prefix": "test5",
+    "body": [
+      "  function* generatorFunction() {",
+      "    yield;",
+      "    foo(yield \"I'm Useless\");",
+      "  }",
+      "",
+      "  const foo = (x) => console.log(\"Just printed arugument passed\", x);",
+      "",
+      "  const gen = generatorFunction();",
+      "",
+      "  console.log(gen.next());",
+      "  console.log(gen.next());",
+      "  console.log(gen.next(10));"
+    ],
+    "description": "Passing Yield as an Argument of a Function "
+  },
+  "Yield with a Function Call": {
+    "prefix": "test6",
+    "body": [
+      "  function* fetchUser() {",
+      "    const user = yield getUser();",
+      "    console.log(user);",
+      "  }",
+      "",
+      "  const getUser = () => {",
+      "    return {",
+      "      name: \"sathish\",",
+      "      domain: \"react\",",
+      "    };",
+      "  };",
+      "",
+      "  const gen = fetchUser();",
+      "",
+      "  console.log(gen.next());",
+      "  console.log(gen.next());"
+    ],
+    "description": "Yield with a Function Call"
+  },
+  "Yield with Promises": {
+    "prefix": "test7",
+    "body": [
+      "  function* fetchUser() {",
+      "    const user = yield apiCall();",
+      "  }",
+      "",
+      "  const apiCall = () =>",
+      "    new Promise((resolve, reject) => {",
+      "      setTimeout(() => {",
+      "        resolve({ name: \"Sathishkumar Raja\", domain: \"React\" });",
+      "      }, 2000);",
+      "    });",
+      "",
+      "  const gen = fetchUser();",
+      "",
+      "  gen.next().value.then((response) => console.log(response));"
+    ],
+    "description": "Yield with Promises"
+  },
+  "Yield* with a Built-in Iterable Object": {
+    "prefix": "test8",
+    "body": [
+      "    function* genFunc() {",
+      "      yield* \"HI\";",
+      "      yield* [1, 2];",
+      "      yield  arguments;",
+      "    }",
+      "  ",
+      "    const genId = genFunc(5,6);",
+      "    console.log(genId.next());",
+      "    console.log(genId.next());",
+      "    console.log(genId.next());"
+    ],
+    "description": "Yield* with a Built-in Iterable Object"
+  }
+}
